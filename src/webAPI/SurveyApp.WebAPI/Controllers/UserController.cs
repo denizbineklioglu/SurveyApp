@@ -41,12 +41,16 @@ namespace SurveyApp.WebAPI.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(AppUserLoginRequest model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName,model.Password,false,true);
-
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                return Ok();
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, true);
+
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
             }
+            
             return BadRequest();
         }
     }

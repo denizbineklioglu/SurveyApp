@@ -12,15 +12,23 @@
     <fielset>
         <bold>@sayac - @item.Text</bold>
         <br /><br />
-        @foreach (var op in item.Options)
+        @if (item.QuestionType == 1)
         {
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    @op.Value
-                </label>
-            </div>
+            @foreach (var op in item.Options)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        @op.Value
+                    </label>
+                </div>
+            }
+        }else if (item.QuestionType == 2)
+        {
+            <label for="customRange1" class="form-label">Example range</label>
+            <input type="range" class="form-range" id="customRange1">
         }
+
         <br>
     </fielset>
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SurveyApp.Entities;
 using SurveyApp.Infrastructure.Context;
 using SurveyApp.Infrastructure.Repositories;
 using SurveyApp.Services;
@@ -29,6 +30,7 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var connectionString = builder.Configuration.GetConnectionString("db");
 builder.Services.AddDbContext<SurveyAppContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<SurveyAppContext>();
 
 var app = builder.Build();
 

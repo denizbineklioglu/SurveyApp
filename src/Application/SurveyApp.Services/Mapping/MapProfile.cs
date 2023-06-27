@@ -19,6 +19,8 @@ namespace SurveyApp.Services.Mapping
             CreateMap<CreateOptionRequest, Option>();
 
             CreateMap<Survey, SurveyListResponse>();
+            CreateMap<AppUserRegisterRequest, AppUser>();
+
         }
     }
 }

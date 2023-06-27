@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SurveyApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SurveyApp.Infrastructure.Context
 {
-    public class SurveyAppContext :DbContext
+    public class SurveyAppContext :IdentityDbContext<AppUser,AppRole,int>
     {
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }

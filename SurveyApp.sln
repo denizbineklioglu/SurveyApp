@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{95395BBC-C0B5-46F8-B8EC-A0AAC06E83E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{34BD42F2-4951-4691-B31E-F5D8E1E98782}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C43087B4-695F-4EF5-BEED-E0198D816B21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{3C43505F-7F8D-44F9-8348-B703B92F1F9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "webUI", "webUI", "{E17DA37F-7BB3-41DC-8BBF-A1A60FA2C32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.Entities", "src\Domain\SurveyApp.Entities\SurveyApp.Entities.csproj", "{2F445C11-BB4E-4C8D-8264-9D392A9207A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.Infrastructure", "src\Infrastructure\SurveyApp.Infrastructure\SurveyApp.Infrastructure.csproj", "{AA8CFB3B-B6FA-4C16-A06D-7EF44343DC12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "webAPI", "webAPI", "{BB3CA929-AB40-423E-B015-103272CD71DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApp.WebAPI", "src\webAPI\SurveyApp.WebAPI\SurveyApp.WebAPI.csproj", "{2AE9D1E8-5C8C-4C84-9806-1C64BF62D4B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F445C11-BB4E-4C8D-8264-9D392A9207A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F445C11-BB4E-4C8D-8264-9D392A9207A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F445C11-BB4E-4C8D-8264-9D392A9207A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F445C11-BB4E-4C8D-8264-9D392A9207A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA8CFB3B-B6FA-4C16-A06D-7EF44343DC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8CFB3B-B6FA-4C16-A06D-7EF44343DC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8CFB3B-B6FA-4C16-A06D-7EF44343DC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8CFB3B-B6FA-4C16-A06D-7EF44343DC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AE9D1E8-5C8C-4C84-9806-1C64BF62D4B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE9D1E8-5C8C-4C84-9806-1C64BF62D4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE9D1E8-5C8C-4C84-9806-1C64BF62D4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE9D1E8-5C8C-4C84-9806-1C64BF62D4B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{34BD42F2-4951-4691-B31E-F5D8E1E98782} = {95395BBC-C0B5-46F8-B8EC-A0AAC06E83E3}
+		{C43087B4-695F-4EF5-BEED-E0198D816B21} = {95395BBC-C0B5-46F8-B8EC-A0AAC06E83E3}
+		{3C43505F-7F8D-44F9-8348-B703B92F1F9A} = {95395BBC-C0B5-46F8-B8EC-A0AAC06E83E3}
+		{E17DA37F-7BB3-41DC-8BBF-A1A60FA2C32C} = {95395BBC-C0B5-46F8-B8EC-A0AAC06E83E3}
+		{2F445C11-BB4E-4C8D-8264-9D392A9207A5} = {3C43505F-7F8D-44F9-8348-B703B92F1F9A}
+		{AA8CFB3B-B6FA-4C16-A06D-7EF44343DC12} = {C43087B4-695F-4EF5-BEED-E0198D816B21}
+		{BB3CA929-AB40-423E-B015-103272CD71DB} = {95395BBC-C0B5-46F8-B8EC-A0AAC06E83E3}
+		{2AE9D1E8-5C8C-4C84-9806-1C64BF62D4B7} = {BB3CA929-AB40-423E-B015-103272CD71DB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22377EE5-5AFE-48CF-B8A2-3E65C8637048}
+	EndGlobalSection
+EndGlobal

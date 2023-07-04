@@ -18,5 +18,6 @@ namespace SurveyApp.Entities
         public Survey Survey { get; set; }
 
         public ICollection<Option> Options { get; set; }
+        public ICollection<Answer> Answers { get; set; }
     }
 }

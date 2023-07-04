@@ -42,18 +42,22 @@ namespace SurveyApp.Infrastructure.Repositories
             return _context.Surveys.SingleOrDefaultAsync(s => s.SurveyID == id);
         }
 
-        public async Task<IList<SurveyQuestionsListResponse>> GetSurveyQuestions(int id)
+        public SurveyQuestionsListResponse GetSurveyQuestions(int id)
         {
-            var result = await _context.Questions.Where(x => x.SurveyID == id).Select(x => new SurveyQuestionsListResponse
-            {
-               Title = x.Survey.Title,
-               Description = x.Survey.Description,
-               Options = x.Options.ToList(),
-               QuestionType = x.QuestionType,
-               Text = x.Text
-            }).ToListAsync();
+            var q =  _context.Questions
+                    .Include(x => x.Options)
+                    .Include(x => x.Survey)
+                    .Where(x => x.SurveyID == id)
+                    .Select(x => new SurveyQuestionsListResponse()
+                    {
+                        SurveyID = id,
+                        Options = _context.Options.ToList(),
+                        Questions =x.Survey.Questions.ToList(),
+                        QuestionType = x.QuestionType,
+                        Text = x.Text,                        
+                    });
 
-            return result;
+            return q.First();
         }
 
         public async Task UpdateAsync(Survey model)

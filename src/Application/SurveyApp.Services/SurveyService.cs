@@ -34,9 +34,9 @@ namespace SurveyApp.Services
             return _mapper.Map<IEnumerable<SurveyListResponse>>(surveys);
         }
 
-        public async Task<IList<SurveyQuestionsListResponse>> GetSurveyQuestions(int id)
+        public SurveyQuestionsListResponse GetSurveyQuestions(int id)
         {
-            return await _repo.GetSurveyQuestions(id);
+            return _repo.GetSurveyQuestions(id);
         }
     }
 }

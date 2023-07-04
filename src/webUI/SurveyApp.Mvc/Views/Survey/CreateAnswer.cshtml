@@ -1,0 +1,49 @@
+﻿@model SurveyApp.DataTransferObjects.Responses.SurveyQuestionsListResponse
+@{
+    ViewData["Title"] = "GetSurveyQuestions";
+    int i = 0;
+    int j = 1;
+    int soruNumarasi = 1;
+}
+
+<h1>Sorular</h1>
+
+<form method="post">
+    <input type="hidden" value="@ViewBag.id" name="SurveyID" />
+
+    @foreach (var item in Model.Questions)
+    {
+
+        <fielset>
+            <bold>@j - @item.Text</bold>
+            <input type="hidden" name="@Model.Questions[soruNumarasi -1].QuestionID" value="@item.QuestionID">
+
+            <br /><br />
+
+            @foreach (var op in item.Options)
+            {
+                if (item.QuestionID == op.QuestionID)
+                {
+                    <div class="form-check">
+                        @Html.RadioButtonFor(model => model.Options[soruNumarasi - 1].OptionID, op.OptionID, new { name = "soru-" + soruNumarasi })
+                        @op.Value
+                        @{
+                            op.QuestionID = @item.QuestionID;
+                        }
+                        @*<input type="radio" name="op-@soruNumarasi" value="@op.Value">*@
+                        @*@Html.RadioButtonFor(b =>b.q,op.OptionID)  *@
+                    </div>
+                }
+                i++;
+            }
+
+            <br>
+        </fielset>
+        soruNumarasi++;
+        j++;
+    }
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Yanıtla</button>
+    </div>
+</form>
+

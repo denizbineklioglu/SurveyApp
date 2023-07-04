@@ -10,6 +10,6 @@ namespace SurveyApp.Infrastructure.Repositories
 {
     public interface ISurveyRepository :IRepository<Survey>
     {
-        Task<IList<SurveyQuestionsListResponse>> GetSurveyQuestions(int id);
+        SurveyQuestionsListResponse GetSurveyQuestions(int id);
     }
 }

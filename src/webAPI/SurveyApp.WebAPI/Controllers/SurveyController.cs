@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using SurveyApp.DataTransferObjects.Requests;
+using SurveyApp.DataTransferObjects.Responses;
+using SurveyApp.Entities;
 using SurveyApp.Services;
 using System.Runtime.CompilerServices;
 
@@ -29,9 +33,9 @@ namespace SurveyApp.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSurveyQuestions(int id)
+        public IActionResult GetSurveyQuestions(int id)
         {
-            var values = await _surveyService.GetSurveyQuestions(id);
+            var values = _surveyService.GetSurveyQuestions(id);
             return Ok(values);
         }
 

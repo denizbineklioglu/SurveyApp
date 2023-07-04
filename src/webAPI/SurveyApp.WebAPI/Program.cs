@@ -9,16 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 builder.Services.AddScoped<ISurveyService, SurveyService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IOptionService, OptionService>();
+builder.Services.AddScoped<IAnswerService, AnswerService>();
 
 
 builder.Services.AddScoped<ISurveyRepository, EFSurveyRepository>();
 builder.Services.AddScoped<IQuestionRepository, EFQuestionRepository>();
 builder.Services.AddScoped<IOptionRepository, EFOptionRepository>();
+builder.Services.AddScoped<IAnswerRepository, EFAnswerRepository>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

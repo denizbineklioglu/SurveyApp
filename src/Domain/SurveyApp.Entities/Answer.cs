@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 namespace SurveyApp.Entities
 {
-    public class Option
+    public class Answer
     {
         [Key]
-        public int OptionID { get; set; }
-        public string Value { get; set; }
+        public int AnswerID { get; set; }
+
+        public int SurveyID { get; set; }
+        public Survey Survey { get; set; }
 
         public int QuestionID { get; set; }
         public Question Question { get; set; }
 
-        public ICollection<Answer> Answers { get; set; }
+        public int OptionID { get; set; }
+        public Option Option { get; set; }
     }
 }

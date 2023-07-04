@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using SurveyApp.DataTransferObjects.Requests;
 using SurveyApp.DataTransferObjects.Responses;
+using SurveyApp.Entities;
+using SurveyApp.Infrastructure.Context;
 using System.Net.Http.Json;
+using System.Text;
 using static System.Net.WebRequestMethods;
 
 namespace SurveyApp.Mvc.Controllers
 {
     public class SurveyController : Controller
     {
-        
+        private readonly SurveyAppContext _context;
+
+        public SurveyController(SurveyAppContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult GetSurveys()
         {
             var client = new HttpClient();
@@ -21,8 +32,8 @@ namespace SurveyApp.Mvc.Controllers
             return View(value);
         }
 
-
-        public  IActionResult GetSurveyQuestions(int id)
+        [HttpGet]
+        public  IActionResult CreateAnswer(int id)
         {
 
             var client = new HttpClient();
@@ -30,11 +41,48 @@ namespace SurveyApp.Mvc.Controllers
             var request = client.GetAsync(endpoint).Result;
             var response = request.Content.ReadAsStringAsync().Result;
 
-            var value = JsonConvert.DeserializeObject<IEnumerable<SurveyQuestionsListResponse>>(response);
+            var value = JsonConvert.DeserializeObject<SurveyQuestionsListResponse>(response);
 
+            ViewBag.id = id;
             return View(value);
         }
 
+        [HttpPost]
+        public IActionResult CreateAnswer(SurveyQuestionsListResponse model)
+        {
+            List<AnswerRequest> answers = new List<AnswerRequest>();
+            for (int i = 0; i < model.Options.Count; i++)
+            {
+                IQueryable<int> questionID = _context.Options.Where(x => x.OptionID == model.Options[i].OptionID).Select(x => x.QuestionID);
+                List<int> qr = questionID.ToList();
+                int[] arrayint = questionID.ToArray();
+                AnswerRequest answer = new AnswerRequest
+                {
+                    OptionID = model.Options[i].OptionID,
+                    QuestionID = arrayint[0],
+                    SurveyID = model.SurveyID
+                };
+                answers.Add(answer);
+            }
+
+            var client = new HttpClient();
+            var value = JsonConvert.SerializeObject(answers);
+            StringContent stringContent = new StringContent(value, Encoding.UTF8, "application/json");
+            var endpoint = "https://localhost:7006/api/Answer/CreateAnswer";
+            var request = client.PostAsync(endpoint, stringContent).Result;
+
+            if (request.IsSuccessStatusCode)
+            {
+                return RedirectToAction("GetSurveys");
+            }
+            
+            return RedirectToAction("CreateAnswer");
+        }
         
+        public IActionResult Istatistics()
+        {
+            return View();
+        }
     }
 }
+    

@@ -1,5 +1,6 @@
 ﻿using SurveyApp.DataTransferObjects.Requests;
 using SurveyApp.DataTransferObjects.Responses;
+using SurveyApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,9 @@ using System.Threading.Tasks;
 
 namespace SurveyApp.Services
 {
-    public interface ISurveyService
+    public interface IAnswerService
     {
-        Task CreateSurveyAsync(CreateSurveyRequest model);
-        SurveyQuestionsListResponse GetSurveyQuestions(int id);
-
-        Task<IEnumerable<SurveyListResponse>> GetSurveyList();
-        
+        Task CreateAnswerAsync(List<AnswerRequest> model);
+        Task<IList<IstatisticRequest>> GetIstatistic();
     }
 }

@@ -12,6 +12,6 @@ namespace SurveyApp.Services
     public interface IAnswerService
     {
         Task CreateAnswerAsync(List<AnswerRequest> model);
-        Task<IList<IstatisticRequest>> GetIstatistic();
+        Task<IList<IstatisticRequest>> GetIstatistic(int id);
     }
 }

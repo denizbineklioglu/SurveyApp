@@ -10,10 +10,8 @@ namespace SurveyApp.Services
 {
     public interface ISurveyService
     {
-        Task CreateSurveyAsync(CreateSurveyRequest model);
+        Task<int> CreateSurveyAsync(CreateSurveyRequest model);
         SurveyQuestionsListResponse GetSurveyQuestions(int id);
-
-        Task<IEnumerable<SurveyListResponse>> GetSurveyList();
-        
+        Task<IEnumerable<SurveyListResponse>> GetSurveyList();        
     }
 }

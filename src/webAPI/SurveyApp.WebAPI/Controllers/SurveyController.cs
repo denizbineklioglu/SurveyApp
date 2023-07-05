@@ -25,9 +25,9 @@ namespace SurveyApp.WebAPI.Controllers
         {
             if (ModelState.IsValid)
             {                
-                await _surveyService.CreateSurveyAsync(model);
-                //
-                return Ok();
+                var lastID = await _surveyService.CreateSurveyAsync(model);
+                var url = "https://localhost:44350/Survey/" + lastID;
+                return Ok(url);
             }
             return BadRequest(ModelState);
         }

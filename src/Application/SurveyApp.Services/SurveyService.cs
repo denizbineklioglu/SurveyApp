@@ -22,10 +22,11 @@ namespace SurveyApp.Services
             _mapper = mapper;
         }
 
-        public async Task CreateSurveyAsync(CreateSurveyRequest model)
+        public async Task<int> CreateSurveyAsync(CreateSurveyRequest model)
         {
             var survey = _mapper.Map<Survey>(model);
             await _repo.CreateAsync(survey);
+            return survey.SurveyID;
         }
 
         public async Task<IEnumerable<SurveyListResponse>> GetSurveyList()

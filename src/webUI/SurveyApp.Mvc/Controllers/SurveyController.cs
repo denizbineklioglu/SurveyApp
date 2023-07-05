@@ -20,6 +20,7 @@ namespace SurveyApp.Mvc.Controllers
             _context = context;
         }
 
+        [Route("/Surveys")]
         public IActionResult GetSurveys()
         {
             var client = new HttpClient();
@@ -32,7 +33,8 @@ namespace SurveyApp.Mvc.Controllers
             return View(value);
         }
 
-        [HttpGet]
+        [Route("Survey/{id}")]
+        [HttpGet]        
         public  IActionResult CreateAnswer(int id)
         {
 

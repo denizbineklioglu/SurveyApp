@@ -13,6 +13,8 @@ namespace SurveyApp.Entities
         public int QuestionID { get; set; }
         public string Text { get; set; }
         public int QuestionType { get; set; }
+        public string TextType { get; set; }
+
 
         public int SurveyID { get; set; }
         public Survey Survey { get; set; }

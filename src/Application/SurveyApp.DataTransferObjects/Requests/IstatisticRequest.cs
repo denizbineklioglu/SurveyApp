@@ -8,6 +8,7 @@ namespace SurveyApp.DataTransferObjects.Requests
 {
     public class IstatisticRequest
     {
+        public string QuestionText { get; set; }
         public string Value { get; set; }
         public int Count { get; set; }
     }

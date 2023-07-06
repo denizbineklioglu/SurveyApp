@@ -39,5 +39,10 @@ namespace SurveyApp.Services
         {
             return _repo.GetSurveyQuestions(id);
         }
+
+        public async Task<IEnumerable<SurveyStatisticResponse>> GetSurveyStatisticResponses()
+        {
+            return await _repo.GetSurveysStatistic();
+        }
     }
 }

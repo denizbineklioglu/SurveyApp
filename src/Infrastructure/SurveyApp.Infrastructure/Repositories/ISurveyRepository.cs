@@ -11,5 +11,6 @@ namespace SurveyApp.Infrastructure.Repositories
     public interface ISurveyRepository :IRepository<Survey>
     {
         SurveyQuestionsListResponse GetSurveyQuestions(int id);
+        Task<IList<SurveyStatisticResponse>> GetSurveysStatistic();
     }
 }

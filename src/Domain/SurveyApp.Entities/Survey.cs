@@ -15,6 +15,7 @@ namespace SurveyApp.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
+        public bool IsActive { get; set; }
 
         public ICollection<Question> Questions { get; set; }
         public ICollection<Answer> Answers { get; set; }

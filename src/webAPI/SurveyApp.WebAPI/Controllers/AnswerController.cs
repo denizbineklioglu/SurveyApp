@@ -24,5 +24,16 @@ namespace SurveyApp.WebAPI.Controllers
             await answerService.CreateAnswerAsync(model);
             return Ok();
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAnswerIstatistics(int id)
+        {
+            var statistics = await answerService.GetIstatistic(id);
+            if (statistics != null)
+            {
+                return Ok(statistics);
+            }
+            return BadRequest();
+        }
     }
 }

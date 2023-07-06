@@ -16,23 +16,34 @@
 
         <fielset>
             <bold>@j - @item.Text</bold>
+
             <input type="hidden" name="@Model.Questions[soruNumarasi -1].QuestionID" value="@item.QuestionID">
 
             <br /><br />
+
 
             @foreach (var op in item.Options)
             {
                 if (item.QuestionID == op.QuestionID)
                 {
-                    <div class="form-check">
-                        @Html.RadioButtonFor(model => model.Options[soruNumarasi - 1].OptionID, op.OptionID, new { name = "soru-" + soruNumarasi })
-                        @op.Value
-                        @{
-                            op.QuestionID = @item.QuestionID;
-                        }
-                        @*<input type="radio" name="op-@soruNumarasi" value="@op.Value">*@
-                        @*@Html.RadioButtonFor(b =>b.q,op.OptionID)  *@
-                    </div>
+                    if (item.QuestionType == 1)
+                    {
+                        <div class="form-check">
+                            @Html.RadioButtonFor(model => model.Options[soruNumarasi - 1].OptionID, op.OptionID, new { name = "soru-" + soruNumarasi })
+                            @op.Value
+                            @{
+                                op.QuestionID = @item.QuestionID;
+                            }
+                            @*<input type="radio" name="op-@soruNumarasi" value="@op.Value">*@
+                            @*@Html.RadioButtonFor(b =>b.q,op.OptionID)  *@
+                        </div>
+                    }
+                    else if (item.QuestionType == 2)
+                    {
+                        <div>
+                            <input type="number" name="@Model.RangeValue" value="@Model.RangeValue"> Puan Verin (1-10)
+                        </div>
+                    }
                 }
                 i++;
             }

@@ -5,6 +5,7 @@ using SurveyApp.DataTransferObjects.Requests;
 using SurveyApp.DataTransferObjects.Responses;
 using SurveyApp.Entities;
 using SurveyApp.Infrastructure.Context;
+using System.Collections;
 using System.Net.Http.Json;
 using System.Text;
 using static System.Net.WebRequestMethods;
@@ -49,6 +50,7 @@ namespace SurveyApp.Mvc.Controllers
             return View(value);
         }
 
+        [Route("Survey/{id}")]
         [HttpPost]
         public IActionResult CreateAnswer(SurveyQuestionsListResponse model)
         {
@@ -80,10 +82,34 @@ namespace SurveyApp.Mvc.Controllers
             
             return RedirectToAction("CreateAnswer");
         }
-        
+
+        [Route("Survey/[action]")]
+        [HttpGet]
         public IActionResult Istatistics()
         {
-            return View();
+
+            var client = new HttpClient();
+            var endpoint = "http://localhost:5035/api/Survey/GetSurveysStatistic";
+            var request = client.GetAsync(endpoint).Result;
+            var response = request.Content.ReadAsStringAsync().Result;
+
+            var value = JsonConvert.DeserializeObject<IEnumerable<SurveyStatisticResponse>>(response);
+
+            return View(value);
+        }
+
+        [Route("Survey/[action]/{id}")]
+        [HttpGet]
+        public IActionResult AnswerIstatistics(int id)
+        {
+            var client = new HttpClient();
+            var endpoint = "https://localhost:7006/api/Answer/GetAnswerIstatistics?id=" + id;
+            var request = client.GetAsync(endpoint).Result;
+            var response = request.Content.ReadAsStringAsync().Result;
+            var value = JsonConvert.DeserializeObject<IEnumerable<IstatisticRequest>>(response);
+
+
+            return View(value);
         }
     }
 }

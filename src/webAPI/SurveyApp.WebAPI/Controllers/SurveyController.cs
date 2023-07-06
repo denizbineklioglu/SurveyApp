@@ -45,5 +45,18 @@ namespace SurveyApp.WebAPI.Controllers
             var values = await _surveyService.GetSurveyList();
             return Ok(values);
         }
+
+
+        [HttpGet("[action]")]
+
+        public async Task<IActionResult> GetSurveysStatistic()
+        {
+            var statistics = await _surveyService.GetSurveyStatisticResponses();
+            if (statistics != null)
+            {
+                return Ok(statistics);
+            }
+            return BadRequest();
+        }
     }
 }

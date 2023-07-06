@@ -12,6 +12,7 @@ namespace SurveyApp.Services
     {
         Task<int> CreateSurveyAsync(CreateSurveyRequest model);
         SurveyQuestionsListResponse GetSurveyQuestions(int id);
-        Task<IEnumerable<SurveyListResponse>> GetSurveyList();        
+        Task<IEnumerable<SurveyListResponse>> GetSurveyList();
+        Task<IEnumerable<SurveyStatisticResponse>> GetSurveyStatisticResponses();
     }
 }

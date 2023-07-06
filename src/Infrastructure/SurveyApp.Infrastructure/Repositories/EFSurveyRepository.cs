@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SurveyApp.DataTransferObjects.Requests;
 using SurveyApp.DataTransferObjects.Responses;
 using SurveyApp.Entities;
 using SurveyApp.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,6 +60,22 @@ namespace SurveyApp.Infrastructure.Repositories
                     });
 
             return q.First();
+        }
+
+        public async Task<IList<SurveyStatisticResponse>> GetSurveysStatistic()
+        {
+            var result = await _context.Surveys
+                        .Include(x => x.Answers)
+                        .Include(x => x.Questions)
+                        .Select(x => new SurveyStatisticResponse()
+                        {
+                            SurveyID = x.SurveyID,
+                            Title = x.Title,
+                            IsActive = x.IsActive,
+                            AnswerCount = x.Answers.Count
+                        }).ToListAsync();
+
+            return result;
         }
 
         public async Task UpdateAsync(Survey model)

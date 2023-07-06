@@ -12,6 +12,7 @@ namespace SurveyApp.DataTransferObjects.Responses
         //public string Title { get; set; }
         //public string Description { get; set; }
         public string Text { get; set; }
+        public int RangeValue { get; set; }
         public IList<Question> Questions { get; set; }
         public IList<Option> Options { get; set; }
         public int QuestionType { get; set; }

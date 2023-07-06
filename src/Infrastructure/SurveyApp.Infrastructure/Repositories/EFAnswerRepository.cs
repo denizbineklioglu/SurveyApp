@@ -7,8 +7,10 @@ using SurveyApp.Infrastructure.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SurveyApp.Infrastructure.Repositories
 {
@@ -58,12 +60,12 @@ namespace SurveyApp.Infrastructure.Repositories
             var result = await _context.Answers
                         .Include(x => x.Option)
                         .Include(y => y.Question)
-                        .Where(x => x.QuestionID == id)
-                        .GroupBy(x => new { x.OptionID, x.QuestionID, x.Option.Value })
+                        .Where(x => x.SurveyID == id)
+                        .GroupBy(x => new { x.OptionID, x.SurveyID, x.Option.Value })
                         .Select(x => new IstatisticRequest
                         {
                             Count = x.Count(),
-                            Value = x.Key.Value
+                            Value = x.Key.Value                            
                         }).ToListAsync();
             return result;
         }
